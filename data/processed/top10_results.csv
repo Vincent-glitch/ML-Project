@@ -1,0 +1,17 @@
+driverId,driverRef,number,code,forename,surname,dob,nationality,Win or Lost,counts,per,per100
+1,hamilton,44,HAM,Lewis,Hamilton,1985-01-07,British,lost,170,0.648854961832061,64.9
+1,hamilton,44,HAM,Lewis,Hamilton,1985-01-07,British,win,92,0.3511450381679389,35.1
+20,vettel,5,VET,Sebastian,Vettel,1987-07-03,German,lost,200,0.7905138339920948,79.1
+20,vettel,5,VET,Sebastian,Vettel,1987-07-03,German,win,53,0.20948616600790515,20.9
+50,verstappen,\N,\N,Jos,Verstappen,1972-03-04,Dutch,lost,107,1.0,100.0
+842,gasly,10,GAS,Pierre,Gasly,1996-02-07,French,lost,58,0.9830508474576272,98.3
+842,gasly,10,GAS,Pierre,Gasly,1996-02-07,French,win,1,0.01694915254237288,1.7
+815,perez,11,PER,Sergio,Pérez,1990-01-26,Mexican,lost,188,1.0,100.0
+817,ricciardo,3,RIC,Daniel,Ricciardo,1989-07-01,Australian,lost,176,0.9617486338797814,96.2
+817,ricciardo,3,RIC,Daniel,Ricciardo,1989-07-01,Australian,win,7,0.03825136612021858,3.8
+822,bottas,77,BOT,Valtteri,Bottas,1989-08-28,Finnish,lost,143,0.9407894736842105,94.1
+822,bottas,77,BOT,Valtteri,Bottas,1989-08-28,Finnish,win,9,0.05921052631578947,5.9
+832,sainz,55,SAI,Carlos,Sainz,1994-09-01,Spanish,lost,114,1.0,100.0
+844,leclerc,16,LEC,Charles,Leclerc,1997-10-16,Monegasque,lost,52,0.9629629629629629,96.3
+844,leclerc,16,LEC,Charles,Leclerc,1997-10-16,Monegasque,win,2,0.037037037037037035,3.7
+848,albon,23,ALB,Alexander,Albon,1996-03-23,Thai,lost,33,1.0,100.0
