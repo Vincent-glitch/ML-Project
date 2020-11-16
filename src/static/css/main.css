@@ -972,6 +972,25 @@ a:not([href]):not([tabindex]):hover {
 .list-unstyled li {
   color: #d9534f;
 }
+
+.fullscreen {
+  width : 100vw;
+  height : 100vh;
+}
+
+.table-cell {
+  display : table-cell;
+  background : lightgrey;
+}
+
+.valign-middle {
+  vertical-align : middle;
+}
+
+.text-center {
+  text-align : center;
+}
+
 /* ==========================================================================
     Subscribe Style
     ========================================================================== */
@@ -1211,3 +1230,5 @@ footer {
     -webkit-transform: scale(1);
   }
 }
+
+
