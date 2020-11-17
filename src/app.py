@@ -1,6 +1,11 @@
 import subprocess
 import sys
 import os
+import face_recognition
+import pickle
+import cv2
+from recognize_faces_images import recognizeDriverFace
+
 try: 
     from flask import Flask, render_template, request, redirect, url_for, abort, \
     send_from_directory
@@ -21,10 +26,13 @@ finally:
 
     """
 
+#
 app = Flask(__name__)
+#would use these to error catch stuff.
 app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024 # set constraints for image size
-app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png', '.gif'] # set only image file types to accept
-app.config['UPLOAD_PATH'] = 'uploads' # where to upload images
+app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png', '.jpeg'] # set only image file types to accept
+UPLOAD_FOLDER = './uploads'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER # where to upload images
 # C- create R- read U- update D -delete
 def validate_image(stream):
     header = stream.read(512)
@@ -41,28 +49,35 @@ def too_large(e):
 
 @app.route('/')
 def index():
-    files = os.listdir(app.config['UPLOAD_PATH'])
-    return render_template('index.html', files=files)
+
+    return render_template('index.html')
 
 @app.route('/', methods=['POST'])
-def upload_files():
-    uploaded_file = request.files['file']
-    filename = secure_filename(uploaded_file.filename)
-    if filename != '':
-        file_ext = os.path.splitext(filename)[1]
-        if file_ext not in app.config['UPLOAD_EXTENSIONS'] or \
-                file_ext != validate_image(uploaded_file.stream):
-            return "Invalid image", 400
-        uploaded_file.save(os.path.join(app.config['UPLOAD_PATH'], filename))
-    return '', 204
+def upload_file():
+
+    if request.method == 'POST':
+        userimage = request.files['userimage']
+        # recognizeDriverFace(userimage)
+        filename = secure_filename(userimage.filename)
+        userimage.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        return redirect(url_for('send_file', filename=filename))
+    return 
+
+
+
+@app.route('/show/<filename>')
+def uploaded_file(filename):
+    filename = 'http://127.0.0.1:5000/uploads/' + filename
+    return render_template('index.html', filename = filename)
 
 @app.route('/uploads/<filename>')
-def upload(filename):
-    return send_from_directory(app.config['UPLOAD_PATH'], filename)
+def send_file(filename):
+    path = UPLOAD_FOLDER + "/" + filename
+    processedimage = recognizeDriverFace(path)
+    # processedname = secure_filename(processedimage.filename)
+    # processedimage.save(os.path.join(app.config['UPLOAD_FOLDER'], processedname))
+    return send_from_directory("./output", "Detected.jpg")
 
-# @app.route('/deploy/')
-# def upload(filename):
-#     return 
 
 
 # start the server with the 'run()' method
