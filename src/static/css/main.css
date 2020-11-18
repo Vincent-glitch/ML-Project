@@ -226,7 +226,7 @@ a:not([href]):not([tabindex]):hover {
    Hero Area Style
    ========================================================================== */
 #hero-area {
-  background: url(../img/hero-area.jpg) fixed no-repeat;
+  background: url(../static/img/hero-area2.png) fixed no-repeat;
   background-size: cover;
   color: #fff;
   overflow: hidden;
@@ -678,7 +678,7 @@ a:not([href]):not([tabindex]):hover {
    Video promo Style
    ========================================================================== */
 .video-promo {
-  background: url(../img/bg_2.jpg) fixed;
+  background: url(../img/formula_1.png) fixed no-repeat;
   background-position: cover;
   position: relative;
 }
@@ -777,7 +777,7 @@ a:not([href]):not([tabindex]):hover {
    Counter Section Style
    ========================================================================== */
 .counters {
-  background: url(../img/bg1.jpg) fixed;
+  background: url(../static/img/b_22.png) fixed;
   position: relative;
 }
 .counters .facts-item {
