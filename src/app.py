@@ -4,7 +4,11 @@ import os
 import face_recognition
 import pickle
 import cv2
+import pymongo
+from bson.json_util import dumps
+from bson.objectid import ObjectId
 from recognize_faces_images import recognizeDriverFace
+from pymongo import MongoClient
 
 try: 
     from flask import Flask, render_template, request, redirect, url_for, abort, \
@@ -28,6 +32,10 @@ finally:
 
 #
 app = Flask(__name__)
+
+conn = 'mongodb://localhost:27017'
+client = pymongo.MongoClient(conn)
+
 #would use these to error catch stuff.
 app.config['MAX_CONTENT_LENGTH'] = 2 * 1024 * 1024 # set constraints for image size
 app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.png', '.jpeg'] # set only image file types to accept
@@ -77,6 +85,25 @@ def send_file(filename):
     # processedname = secure_filename(processedimage.filename)
     # processedimage.save(os.path.join(app.config['UPLOAD_FOLDER'], processedname))
     return send_from_directory("./output", "Detected.jpg")
+
+@app.route("/adj.json")
+def tester():
+
+    db = client['B-Masseys']
+    collection = db['rank']
+    rank_list = list(collection.find())
+    rank_data = rank_list[0]
+    r=0
+    for ranks in range(len(rank_data['Driver1'])):
+
+        ranks = []
+        rank_dict = {'x': ranks }
+        for x in rank_data['Driver1']:
+            ranks.append(rank_dict[x])
+    
+
+    response = dumps({"nodes": rank_data})
+    return response
 
 
 
